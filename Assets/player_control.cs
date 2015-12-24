@@ -42,7 +42,9 @@ public class player_control : MonoBehaviour {
         if (Input.GetKey(KeyCode.J))
         {
             GameObject bullet = GameObject.Find("bullet");
+            bullet.transform.position = gameObject.transform.position + gameObject.transform.up * 2;
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            rb.velocity = Vector2.zero;
             rb.AddForce(gameObject.transform.up * 1, ForceMode2D.Impulse);
         }
 	}
