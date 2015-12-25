@@ -11,6 +11,18 @@ public class player_control : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         Vector3 euler = gameObject.transform.eulerAngles;
+
+        float x = Input.GetAxis("Horizontal");
+        float y = Input.GetAxis("Vertical");
+        //Debug.LogError(x.ToString() + "  " + y.ToString());
+        if (Mathf.Abs(x - 0) > 0.1 || Mathf.Abs(y - 0) > 0.1)
+        {
+            euler.z = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
+            euler.z -= 90;
+            gameObject.transform.eulerAngles = euler;
+            gameObject.transform.Translate(0, 1 * Time.deltaTime, 0, Space.Self);
+        }
+
 	    if (Input.GetKey(KeyCode.W))
         {
             euler.z = 0;
