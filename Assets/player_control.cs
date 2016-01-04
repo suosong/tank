@@ -55,11 +55,11 @@ public class player_control : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.J))
         {
-            GameObject bullet = GameObject.Instantiate(bullet_pre, gameObject.transform.position + gameObject.transform.up * 2,Quaternion.identity) as GameObject;
-            //bullet.transform.position = gameObject.transform.position + gameObject.transform.up * 2;
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            //rb.velocity = Vector2.zero;
-            rb.AddForce(gameObject.transform.up * 1, ForceMode2D.Impulse);
+            //GameObject bullet = GameObject.Instantiate(bullet_pre, gameObject.transform.position + gameObject.transform.up * 2,Quaternion.identity) as GameObject;
+            ////bullet.transform.position = gameObject.transform.position + gameObject.transform.up * 2;
+            //Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            ////rb.velocity = Vector2.zero;
+            //rb.AddForce(gameObject.transform.up * 10, ForceMode2D.Impulse);
         }
 	}
 }
