@@ -43,7 +43,9 @@ Temporary Items
 .apdisk
 
 
-
+Library/
+Temp/
 *.csproj
 *.sln
 *.suo
+Library/assetDatabase3
