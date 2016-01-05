@@ -43,7 +43,7 @@ Temporary Items
 .apdisk
 
 
-/*
-!/Assets/
-!/ProjectSettings/
-!/doc/
+Library/
+*.csproj
+*.sln
+*.suo
