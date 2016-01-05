@@ -1,6 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum launch_timer
+{
+    one,
+    two,
+    three,
+    four,
+    five,
+    invalid
+}
+
 public class bullet_aim : MonoBehaviour {
 
     public int bounce_time = 5;
@@ -10,6 +20,8 @@ public class bullet_aim : MonoBehaviour {
     public Vector3 aim_dir;
 
     public bool aimed = false;
+    public bool one_frame = false;
+    public launch_timer bullet_launch_timer = launch_timer.invalid;
 
     public Transform player_trans = null;
     public Transform bullet_trans = null;
@@ -28,6 +40,11 @@ public class bullet_aim : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (Mathf.Abs(bullet_trans.position.x) > 20.0f || Mathf.Abs(bullet_trans.position.y) > 20.0f)
+        {
+            bullet_trans.position = new Vector3(0, 4, 0);
+        }
+
         if (!Input.GetKey(KeyCode.J))
         {
             if (aimed)
@@ -49,13 +66,34 @@ public class bullet_aim : MonoBehaviour {
             stop_bullet();
             launch_bullet();
         }
+        else if (bullet_launch_timer == launch_timer.one)
+        {
+            bullet_launch_timer = launch_timer.two;
+        }
+        else if (bullet_launch_timer == launch_timer.two)
+        {
+            bullet_launch_timer = launch_timer.three;
+        }
+        else if (bullet_launch_timer == launch_timer.three)
+        {
+            bullet_launch_timer = launch_timer.four;
+        }
+        else if (bullet_launch_timer == launch_timer.four)
+        {
+            bullet_launch_timer = launch_timer.five;
+        }
+        else if (bullet_launch_timer == launch_timer.five)
+        {
+            launch_bullet();
+            bullet_launch_timer = launch_timer.invalid;
+        }
         else if (!check_aim_valid())
         {
             bounce_points_list.Clear();
             stop_bullet();
             aim_line_render.enabled = false;
             aim_line_render.SetVertexCount(0);
-            launch_bullet();
+            bullet_launch_timer = launch_timer.one;
         }
         else
         {
@@ -93,7 +131,7 @@ public class bullet_aim : MonoBehaviour {
         
         bullet_trans.position = player_trans.position + player_trans.up * 2;
         bullet_rb.velocity = Vector2.zero;
-        bullet_rb.AddForce(player_trans.up * 1000, ForceMode2D.Impulse);
+        bullet_rb.AddForce(player_trans.up * 1000000000, ForceMode2D.Impulse);
 
         aim_line_render.enabled = true;
         aim_line_render.SetVertexCount(0);
