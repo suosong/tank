@@ -17,7 +17,7 @@ public class player_control : MonoBehaviour {
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         //Debug.LogError(x.ToString() + "  " + y.ToString());
-        if (Mathf.Abs(x - 0) > 0.1 || Mathf.Abs(y - 0) > 0.1)
+        if (Mathf.Abs(x - 0) > 0.5 || Mathf.Abs(y - 0) > 0.5)
         {
             euler.z = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
             euler.z -= 90;
